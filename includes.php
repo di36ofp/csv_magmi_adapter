@@ -7,22 +7,13 @@
  * @copyright Copyright (c) 2015 Tiempo Libre.
  * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Adapter{
 
-  public function import(){
+require 'config.inc';
 
-  }
+require 'Uploader.php';
 
-  public function export(){
+require 'Csv.php';
 
-  }
+require 'Adapter.php';
 
-  private function read(){
-
-  }
-
-  private function handle(){
-
-  }
-}
-
+require 'Controller.php';

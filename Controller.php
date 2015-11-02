@@ -19,7 +19,9 @@ class Controller{
     if(count($error)) $this->setError($error);
 
     $file = new Uploader($data['file']['csv_file']);
-    var_dump($file->setDestination());
+    $file->setDestination();
+    $file->upload();
+
     // $csv = new Csv($file);
     // $csv->getRows();
   }

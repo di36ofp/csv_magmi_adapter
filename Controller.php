@@ -22,8 +22,9 @@ class Controller{
     $file->setDestination();
     $file->upload();
 
-    // $csv = new Csv($file);
-    // $csv->getRows();
+    $csv = new Csv($file->getUploadedFile());
+    $csv->getCsvRows();
+    $csv->countCsvRows();
   }
 
   public function setError($options){

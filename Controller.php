@@ -1,7 +1,13 @@
 <?php
 /**
+ * CSV MAGMI adapter
  *
+ * @author Diego P. Suárez <info@diego-suarez.es>
+ * @package CSV_Magmi_adapter
+ * @copyright Copyright (c) 2015 Tiempo Libre.
+ * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
+
 class Controller{
   public function index(){
     include 'views/layout.php';
@@ -23,8 +29,10 @@ class Controller{
     $file->upload();
 
     $csv = new Csv($file->getUploadedFile());
-    $csv->getCsvRows();
-    $csv->countCsvRows();
+    $d = new Debuger();
+    $d->debug($csv->getCsvRows());
+    $d->debug($csv->getCsvHeader());
+    //$csv->closeCsv();
   }
 
   public function setError($options){

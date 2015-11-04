@@ -16,9 +16,9 @@ class Csv{
 
   public $header;
 
-  public $rows;
+  public $rows = array();
 
-  public $columns;
+  public $columns = array();
 
   private $content;
 
@@ -33,22 +33,35 @@ class Csv{
     $this->content = fopen(IMPORT_DIR.'/'.$this->name, 'r');
   }
 
+  public function closeCsv(){
+    fclose($this->content);
+  }
+
   private function getCsvContent(){
     return $this->content;
   }
 
   public function getCsvRows(){
-    $rows = array();
     $setup_header = false;
+
     while (($line = fgetcsv($this->getCsvContent())) !== FALSE) {
       if(!$setup_header){
         $this->setCsvHeader($line[0]);
         $setup_header = true;
+      }else{
+        $this->setCsvRows($line[0]);
       }
-
-      $rows[] = $line;
     }
-    return $rows;
+    return $this->rows;
+  }
+
+  private function setCsvRows($line){
+
+    $this->rows[] = explode(';', $line);
+  }
+
+  public function getCsvHeader(){
+    return $this->header;
   }
 
   private function setCsvHeader($line){

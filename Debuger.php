@@ -8,14 +8,16 @@
  * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-require 'config.inc';
+class Debuger{
+  public function __construct(){
 
-require 'Debuger.php';
+  }
 
-require 'Uploader.php';
+  public function debug($arg){
+    print "<pre>";
+    // print_r(debug_backtrace());
+    print_r($arg);
+    print "<pre>";
+  }
+}
 
-require 'Csv.php';
-
-require 'Adapter.php';
-
-require 'Controller.php';

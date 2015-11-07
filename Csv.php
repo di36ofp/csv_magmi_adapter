@@ -41,23 +41,26 @@ class Csv{
     return $this->content;
   }
 
-  public function getCsvRows(){
+  public function getCsv(){
     $setup_header = false;
 
-    while (($line = fgetcsv($this->getCsvContent())) !== FALSE) {
+    while (($line = fgetcsv($this->getCsvContent(), 1000, ";")) !== FALSE) {
       if(!$setup_header){
-        $this->setCsvHeader($line[0]);
+        $this->setCsvHeader($line);
         $setup_header = true;
       }else{
-        $this->setCsvRows($line[0]);
+        $this->setCsvRows($line);
       }
     }
+  }
+
+  public function getCsvRows(){
     return $this->rows;
   }
 
   private function setCsvRows($line){
-
-    $this->rows[] = explode(';', $line);
+    $tmp = array_combine($this->header, $line);
+    $this->rows[] = $tmp;
   }
 
   public function getCsvHeader(){
@@ -65,12 +68,15 @@ class Csv{
   }
 
   private function setCsvHeader($line){
-    $this->header = explode(';', $line);
+    $this->header = $line;
   }
 
   public function countCsvRows(){
     return count($this->getCsvRows());
   }
 
+  public function getTotalColumns(){
+    return count($this->header);
+  }
 
 }

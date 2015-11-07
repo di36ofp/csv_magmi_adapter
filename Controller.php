@@ -29,9 +29,11 @@ class Controller{
     $file->upload();
 
     $csv = new Csv($file->getUploadedFile());
+    $csv->getCsv();
     $d = new Debuger();
-    $d->debug($csv->getCsvRows());
+    $csv->getTotalColumns();
     $d->debug($csv->getCsvHeader());
+    $d->debug($csv->getCsvRows());
     //$csv->closeCsv();
   }
 
